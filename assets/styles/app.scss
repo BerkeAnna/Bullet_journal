@@ -1,8 +1,12 @@
 @import "bootstrap";
 
 $sidebar-bg: #191c24;
+$sidebar-darkgrey: #343a40;
+$sidebar-text-color: #6C7293;
+$red-color: #EB1616;
 
 $roboto-font: 'Roboto', sans-serif;
+$open-font: 'Open', sans-serif;
 
 .red {
   background-color: red;
@@ -18,7 +22,7 @@ html {
     width: 250px;
     z-index: 999;
     background-color: $sidebar-bg;
-    color: red;
+    color: $red-color;
 
     .sidebar-title {
       display: flex;
@@ -35,17 +39,52 @@ html {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      justify-content: space-between;
       padding-top: 8px;
       padding-bottom: 8px;
+      background-color: $sidebar-bg;
 
-      .navbar-nav {
-        display: block;
-        padding-left: 0;
-        margin-bottom: 0;
 
-        list-style: none;
+      .nav-link {
+        color: $sidebar-text-color;
+        font-family: $open-font;
+        padding: 7px 20px;
+
+
+        .fa-solid {
+          width: 40px;
+          height: 40px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          background: black;
+          border-radius: 40px;
+        }
       }
+
+      .active {
+        background-color: black;
+        color: $red-color;
+        border-radius: 0px 30px 30px 0px;
+        border-left: 3px solid $red-color;
+
+
+        i {
+          color: $red-color;
+
+
+        }
+
+        .fa-solid {
+          width: 40px;
+          height: 40px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          background: $sidebar-bg;
+          border-radius: 40px;
+        }
+      }
+
     }
   }
 
