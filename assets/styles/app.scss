@@ -19,7 +19,7 @@ html {
     top: 0;
     left: 0;
     bottom: 0;
-    width: 250px;
+    min-width: 250px;
     z-index: 999;
     background-color: $sidebar-bg;
     color: $red-color;
@@ -96,8 +96,9 @@ html {
   }
 
   .content {
-    margin-left: 250px;
+    //margin-left: 250px;
     min-height: 100vh;
+    max-height: 50px;
     background: black;
     transition: 0.5s;
   }
