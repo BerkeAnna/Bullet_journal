@@ -2,6 +2,8 @@
 
 $sidebar-bg: #191c24;
 
+$roboto-font: 'Roboto', sans-serif;
+
 .red {
   background-color: red;
 }
@@ -17,17 +19,53 @@ html {
     z-index: 999;
     background-color: $sidebar-bg;
     color: red;
+
+    .sidebar-title {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: $roboto-font;
+      font-size: 28px;
+      font-weight: 800;
+      margin-top: 8px;
+    }
+
+    .navbar {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 8px;
+      padding-bottom: 8px;
+
+      .navbar-nav {
+        display: block;
+        padding-left: 0;
+        margin-bottom: 0;
+
+        list-style: none;
+      }
+    }
   }
 
   .navbar {
     position: sticky;
     top: 0;
     right: 0;
+    background-color: $sidebar-bg;
+  }
 
+  .content {
+    margin-left: 250px;
+    min-height: 100vh;
+    background: black;
+    transition: 0.5s;
   }
 
 
   body {
     height: 50000px;
+    background-color: black;
   }
 }

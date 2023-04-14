@@ -8,20 +8,44 @@
     <title>Welcome to Symfony!</title>
 </head>
 
-<div class="container-fluid d-flex red ms-0 justify-content-end">
-    <div class="sidebar d-flex">
-        SideBar
-        <h1>{{ page_title }}</h1>
-    </div>
-    <div class="">
-        <nav class="navbar navbar-light">
-            <div class="container-fluid">
-                <span class="navbar-brand mb-0 h1">Navbar</span>
+{# <div class="container d-flex red ms-0 justify-content-around"> #}
+<div class="sidebar">
+    <h1 class="sidebar-title"> {{ page_title }} </h1>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    </li>
+                </ul>
             </div>
-        </nav>
-    </div>
-
+        </div>
+    </nav>
 </div>
+
+<div class="content">
+    <nav class="navbar navbar-dark">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">Navbar</span>
+        </div>
+    </nav>
+</div>
+
+{# </div> #}
 <body>
 
 </body>
