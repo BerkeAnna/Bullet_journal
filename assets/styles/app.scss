@@ -1,6 +1,12 @@
 @import "bootstrap";
 
 $sidebar-bg: #191c24;
+$sidebar-darkgrey: #343a40;
+$sidebar-text-color: #6C7293;
+$red-color: #EB1616;
+
+$roboto-font: 'Roboto', sans-serif;
+$open-font: 'Open', sans-serif;
 
 .red {
   background-color: red;
@@ -13,21 +19,93 @@ html {
     top: 0;
     left: 0;
     bottom: 0;
-    width: 250px;
+    min-width: 250px;
     z-index: 999;
     background-color: $sidebar-bg;
-    color: red;
+    color: $red-color;
+
+    .sidebar-title {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: $roboto-font;
+      font-size: 28px;
+      font-weight: 800;
+      margin-top: 8px;
+    }
+
+    .navbar {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      padding-top: 8px;
+      padding-bottom: 8px;
+      background-color: $sidebar-bg;
+
+
+      .nav-link {
+        color: $sidebar-text-color;
+        font-family: $open-font;
+        padding: 7px 20px;
+
+
+        .fa-solid {
+          width: 40px;
+          height: 40px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          background: black;
+          border-radius: 40px;
+        }
+      }
+
+      .active {
+        background-color: black;
+        color: $red-color;
+        border-radius: 0px 30px 30px 0px;
+        border-left: 3px solid $red-color;
+
+
+        i {
+          color: $red-color;
+
+
+        }
+
+        .fa-solid {
+          width: 40px;
+          height: 40px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          background: $sidebar-bg;
+          border-radius: 40px;
+        }
+      }
+
+    }
   }
 
   .navbar {
     position: sticky;
     top: 0;
     right: 0;
+    background-color: $sidebar-bg;
+  }
 
+  .content {
+    //margin-left: 250px;
+    min-height: 100vh;
+    max-height: 50px;
+    background: black;
+    transition: 0.5s;
   }
 
 
   body {
     height: 50000px;
+    background-color: black;
   }
 }
