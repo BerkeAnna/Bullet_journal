@@ -8,11 +8,6 @@ $red-color: #EB1616;
 $roboto-font: 'Roboto', sans-serif;
 $open-font: 'Open', sans-serif;
 
-.red {
-  background-color: red;
-}
-
-
 html {
   .sidebar {
     position: fixed;
@@ -95,16 +90,54 @@ html {
     background-color: $sidebar-bg;
   }
 
-  .content {
-    min-height: 100vh;
+  .nav-content {
     max-height: 50px;
     background: black;
     transition: 0.5s;
+  }
+
+  .container-starts-250 {
+    min-width: 1170px;
+    margin-left: 235px;
+    margin-right: auto;
   }
 
 
   body {
     height: 50000px;
     background-color: black;
+
+    .card {
+      margin-top: 20px;
+      margin-left: 20px;
+      margin-right: 20px;
+      background-color: $sidebar-bg;
+      color: $sidebar-text-color;
+      border-radius: 5px;
+
+      .card-body {
+
+        h1 {
+          font-size: 22px;
+        }
+
+        h2 {
+          font-size: 18px;
+        }
+
+        button {
+          background-color: $red-color;
+          border: $red-color;
+          color: white;
+          font-weight: 500;
+
+          &:hover {
+            color: #fff;
+            background-color: #c81313;
+            border-color: #bc1212;
+          }
+        }
+      }
+    }
   }
 }

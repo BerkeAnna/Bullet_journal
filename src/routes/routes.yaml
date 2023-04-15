@@ -1,3 +1,7 @@
 index:
   path: /
   controller: App\Controller\IndexController::index
+
+dailyNoteIndex:
+  path: /dailyNote
+  controller: App\Controller\DailyNoteController::index
