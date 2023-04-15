@@ -135,6 +135,8 @@ html {
         form {
           .text-input {
             background-color: $sidebar-bg;
+            border: 1px solid black;
+            border-radius: 5px;
           }
         }
 

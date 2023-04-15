@@ -28,7 +28,7 @@ class DailyHelperType extends AbstractType
                 ->add('name', TextType::class, [
                     'attr' => [
                         'placeholder' => 'Add a new todo here',
-                        'class' => 'text-input'
+                        'class' => 'text-input ps-2 pt-1 pb-1'
                     ],
                     'label' => false,
 
