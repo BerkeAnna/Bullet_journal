@@ -133,11 +133,34 @@ html {
 
         //todo: nem működik ez a class a formon
         form {
-          .text-input {
+          .create-text-input {
             background-color: $sidebar-bg;
             border: 1px solid black;
             border-radius: 5px;
+
           }
+
+          .todo-text-input {
+            background-color: black;
+            border: 1px solid black;
+            color: $sidebar-text-color;
+            border-radius: 5px;
+            padding-bottom: 5px;
+            justify-content: end;
+
+            &::placeholder {
+              color: $sidebar-text-color;
+            }
+
+            &:hover {
+              border: 1px solid white;
+            }
+
+          }
+        }
+
+        table {
+          color: white;
         }
 
         button {
@@ -145,6 +168,12 @@ html {
           border: $red-color;
           color: white;
           font-weight: 500;
+
+          a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+          }
 
           &:hover {
             color: #fff;

@@ -3,7 +3,9 @@
 namespace App\Form;
 
 use App\Entity\DailyHelper;
+use DateTime;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -13,14 +15,33 @@ class DailyHelperType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+
         $builder
-            ->add('name')
-            ->add('description')
-            ->add('date')
-            ->add('completed')
-            ->add('type')
-            ->add('dailyNote')
-            ->add('owner');
+            ->remove('completed')
+            ->add('name', TextType::class, [
+                'attr' => [
+                    'placeholder' => 'name...',
+                    'class' => 'create-text-input ps-2 pt-1 pb-1'
+                ]
+            ])
+            ->add('description', TextType::class, [
+                'attr' => [
+                    'placeholder' => 'description...(if you need)',
+                    'class' => 'create-text-input ps-2 pt-1 pb-1'
+                ]
+            ])
+            ->add('date', DateType::class, [
+                'data' => new DateTime('now'),
+                'attr' => [
+                    'class' => 'create-text-input ps-2 pt-1 pb-1'
+                ]
+            ])
+            ->add('submit', SubmitType::class, [
+                'attr' => [
+                    'class' => 'btn',
+                ]
+            ])
+            ->remove('type');
 
         parent::buildForm($builder, $options);
         if ($options['todo']) {
@@ -28,19 +49,28 @@ class DailyHelperType extends AbstractType
                 ->add('name', TextType::class, [
                     'attr' => [
                         'placeholder' => 'Add a new todo here',
-                        'class' => 'text-input ps-2 pt-1 pb-1'
+                        'class' => 'todo-text-input ps-2 pt-1 pb-1'
                     ],
                     'label' => false,
-
                 ])
-                ->add('submit', SubmitType::class)
+                ->add('submit', SubmitType::class, [
+                    'label' => 'Add',
+                    'attr' => [
+                        'class' => 'btn',
+                    ]
+                ])
                 ->remove('description')
-                ->remove('date')
-                ->remove('completed')
                 ->remove('type')
                 ->remove('dailyNote')
+                ->remove('date')
                 ->remove('owner');
 
+        }
+        if ($options['note']) {
+            $builder
+                ->remove('dailyNote')
+                ->remove('date')
+                ->remove('owner');
         }
 
     }
@@ -50,7 +80,11 @@ class DailyHelperType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => DailyHelper::class,
-            'todo' => true
+            'todo' => false,
+            'note' => false,
+            'event' => false,
+            'birthday' => false,
+            'nameDay' => false,
         ]);
     }
 }

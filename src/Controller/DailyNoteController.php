@@ -4,13 +4,14 @@ namespace App\Controller;
 
 use App\Entity\DailyHelper;
 use App\Form\DailyHelperType;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 
 class DailyNoteController extends AbstractController
 {
 
-    public function index(Request $request)
+    public function index(Request $request, EntityManagerInterface $entityManager)
     {
         $dailyHelper = new DailyHelper();
         $todo = true;
@@ -19,10 +20,11 @@ class DailyNoteController extends AbstractController
             'todo' => $todo,
         ]);
 
-        $pageTitle = "Bujo";
+        $newToDo = $request->request->get("daily_helper")["name"];
         return $this->render('dailyNote.html.twig', [
-            'page_title' => $pageTitle,
-            'form' => $form->createView()]);
+            'form' => $form->createView(),
+            'newToDo' => $newToDo
+        ]);
     }
 
 

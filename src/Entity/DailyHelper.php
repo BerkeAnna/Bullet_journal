@@ -44,16 +44,16 @@ class DailyHelper
      */
     private $type;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=DailyNote::class, inversedBy="dailyHelpers")
-     */
-    private $dailyNote;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="dailyHelpers")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $owner;
+//    /**
+//     * @ORM\ManyToMany(targetEntity=DailyNote::class, inversedBy="dailyHelpers")
+//     */
+//    private $dailyNote;
+//
+//    /**
+//     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="dailyHelpers")
+//     * @ORM\JoinColumn(nullable=false)
+//     */
+//    private $owner;
 
     public function __construct()
     {
@@ -124,33 +124,33 @@ class DailyHelper
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getDailyNote()
-    {
-        return $this->dailyNote;
-    }
-
-    /**
-     * @param mixed $dailyNote
-     */
-    public function setDailyNote($dailyNote): void
-    {
-        $this->dailyNote = $dailyNote;
-    }
-
-    public function getOwner(): ?User
-    {
-        return $this->owner;
-    }
-
-    public function setOwner(?User $owner): self
-    {
-        $this->owner = $owner;
-
-        return $this;
-    }
+//    /**
+//     * @return mixed
+//     */
+//    public function getDailyNote()
+//    {
+//        return $this->dailyNote;
+//    }
+//
+//    /**
+//     * @param mixed $dailyNote
+//     */
+//    public function setDailyNote($dailyNote): void
+//    {
+//        $this->dailyNote = $dailyNote;
+//    }
+//
+//    public function getOwner(): ?User
+//    {
+//        return $this->owner;
+//    }
+//
+//    public function setOwner(?User $owner): self
+//    {
+//        $this->owner = $owner;
+//
+//        return $this;
+//    }
 
 
 }

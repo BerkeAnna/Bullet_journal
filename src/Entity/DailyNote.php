@@ -29,11 +29,6 @@ class DailyNote
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $note;
-
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
 
     private $image;
 
@@ -49,11 +44,11 @@ class DailyNote
      */
     private $owner;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=DailyHelper::class, mappedBy="owner")
-     * @ORM\JoinColumn(name="dailyHelpers_user")
-     */
-    private $dailyHelpers;
+//    /**
+//     * @ORM\ManyToMany(targetEntity=DailyHelper::class, mappedBy="owner")
+//     * @ORM\JoinColumn(name="dailyHelpers_user")
+//     */
+//    private $dailyHelpers;
 
     public function __construct()
     {
@@ -73,18 +68,6 @@ class DailyNote
     public function setDate(DateTimeInterface $date): self
     {
         $this->date = $date;
-
-        return $this;
-    }
-
-    public function getNote(): ?string
-    {
-        return $this->note;
-    }
-
-    public function setNote(string $note): self
-    {
-        $this->note = $note;
 
         return $this;
     }
@@ -143,30 +126,30 @@ class DailyNote
         return $this;
     }
 
-    /**
-     * @return Collection<int, DailyHelper>
-     */
-    public function getDailyHelpers(): Collection
-    {
-        return $this->dailyHelpers;
-    }
-
-    public function addDailyHelper(DailyHelper $dailyHelper): self
-    {
-        if (!$this->dailyHelpers->contains($dailyHelper)) {
-            $this->dailyHelpers[] = $dailyHelper;
-            $dailyHelper->addOwner($this);
-        }
-
-        return $this;
-    }
-
-    public function removeDailyHelper(DailyHelper $dailyHelper): self
-    {
-        if ($this->dailyHelpers->removeElement($dailyHelper)) {
-            $dailyHelper->removeOwner($this);
-        }
-
-        return $this;
-    }
+//    /**
+//     * @return Collection<int, DailyHelper>
+//     */
+//    public function getDailyHelpers(): Collection
+//    {
+//        return $this->dailyHelpers;
+//    }
+//
+//    public function addDailyHelper(DailyHelper $dailyHelper): self
+//    {
+//        if (!$this->dailyHelpers->contains($dailyHelper)) {
+//            $this->dailyHelpers[] = $dailyHelper;
+//            $dailyHelper->addOwner($this);
+//        }
+//
+//        return $this;
+//    }
+//
+//    public function removeDailyHelper(DailyHelper $dailyHelper): self
+//    {
+//        if ($this->dailyHelpers->removeElement($dailyHelper)) {
+//            $dailyHelper->removeOwner($this);
+//        }
+//
+//        return $this;
+//    }
 }
