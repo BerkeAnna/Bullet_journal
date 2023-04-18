@@ -115,6 +115,7 @@ html {
       border-radius: 5px;
 
       .card-body {
+        padding-top: 20px;
 
         h1 {
           font-size: 22px;
@@ -131,32 +132,54 @@ html {
           color: white;
         }
 
+
         //todo: nem működik ez a class a formon
-        form {
-          .create-text-input {
+        //form {
+
+        label {
+          color: $sidebar-text-color;
+        }
+
+
+        .create-text-input {
+          //input {
+          background-color: $sidebar-bg;
+          border: 1px solid black;
+          border-radius: 5px;
+          color: red;
+          //}
+
+        }
+
+        input {
+
+          background-color: black;
+          border: 1px solid black;
+          color: $sidebar-text-color;
+          border-radius: 5px;
+          width: 90%;
+        }
+
+        .todo-text-input {
+          input {
             background-color: $sidebar-bg;
             border: 1px solid black;
             border-radius: 5px;
-
-          }
-
-          .todo-text-input {
-            background-color: black;
-            border: 1px solid black;
             color: $sidebar-text-color;
-            border-radius: 5px;
-            padding-bottom: 5px;
-            justify-content: end;
-
-            &::placeholder {
-              color: $sidebar-text-color;
-            }
-
-            &:hover {
-              border: 1px solid white;
-            }
-
           }
+
+          padding-bottom: 5px;
+          justify-content: end;
+
+          &::placeholder {
+            color: $sidebar-text-color;
+          }
+
+          &:hover {
+            border: 1px solid white;
+          }
+
+          //}
         }
 
         table {

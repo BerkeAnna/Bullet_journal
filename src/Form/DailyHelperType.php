@@ -20,20 +20,18 @@ class DailyHelperType extends AbstractType
             ->remove('completed')
             ->add('name', TextType::class, [
                 'attr' => [
-                    'placeholder' => 'name...',
-                    'class' => 'create-text-input ps-2 pt-1 pb-1'
+                    'class' => ' ps-2 pt-1 pb-1'
                 ]
             ])
             ->add('description', TextType::class, [
                 'attr' => [
-                    'placeholder' => 'description...(if you need)',
-                    'class' => 'create-text-input ps-2 pt-1 pb-1'
+                    'class' => 'ps-2 pt-1 pb-1'
                 ]
             ])
             ->add('date', DateType::class, [
                 'data' => new DateTime('now'),
                 'attr' => [
-                    'class' => 'create-text-input ps-2 pt-1 pb-1'
+                    'class' => ' ps-2 pt-1 pb-1'
                 ]
             ])
             ->add('submit', SubmitType::class, [
