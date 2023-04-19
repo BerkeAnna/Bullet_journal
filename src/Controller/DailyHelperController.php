@@ -29,6 +29,7 @@ class DailyHelperController extends AbstractController
                 //Todo: a dailyhelpert majd úgy tudom hozzáadni, hogy sql-ben megnézem a dátumot, hogy ugyanaz legyen, meg a user is
                 $entityManager->persist($dailyHelper);
                 $entityManager->flush();
+                return $this->redirect($this->generateUrl('dailyNoteIndex'));
             }
         }
 
@@ -71,6 +72,7 @@ class DailyHelperController extends AbstractController
 
                 $entityManager->persist($dailyHelper);
                 $entityManager->flush();
+                return $this->redirect($this->generateUrl('dailyNoteIndex'));
             }
         }
 
