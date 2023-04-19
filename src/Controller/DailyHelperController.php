@@ -20,15 +20,16 @@ class DailyHelperController extends AbstractController
         $form = $this->createForm(DailyHelperType::class, $dailyHelper, [
             'todo' => $todo,
         ]);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $dailyHelper->setName($form->getName());
-            $dailyHelper->setDate(new DateTime());
-            $dailyHelper->setCompleted(false);
-            $dailyHelper->setType("todo");
-            //Todo: a dailyhelpert majd úgy tudom hozzáadni, hogy sql-ben megnézem a dátumot, hogy ugyanaz legyen, meg a user is
-            $entityManager->persist($dailyHelper);
-            $entityManager->flush();
+        if ($request->isMethod('POST')) {
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $dailyHelper->setDate(new DateTime());
+                $dailyHelper->setCompleted(false);
+                $dailyHelper->setType("todo");
+                //Todo: a dailyhelpert majd úgy tudom hozzáadni, hogy sql-ben megnézem a dátumot, hogy ugyanaz legyen, meg a user is
+                $entityManager->persist($dailyHelper);
+                $entityManager->flush();
+            }
         }
 
         $newToDo = "ezt majd meg kell csinálni";
@@ -45,31 +46,32 @@ class DailyHelperController extends AbstractController
         $createType = $request->attributes->get("name");
         $noteType = "note";
         $form = $this->createForm(DailyHelperType::class, $dailyHelper, ['note' => true]);
-//        if ($createType == "note") {
-//            $form = $this->createForm(DailyHelperType::class, $dailyHelper, ['note' => true]);
-//        } elseif ($createType == "event") {
-//            $noteType = "event";
-//            $form = $this->createForm(DailyHelperType::class, $dailyHelper, ['event' => true]);
-//        } elseif ($createType == "birthday") {
-//            $noteType = "birthday";
-//            $form = $this->createForm(DailyHelperType::class, $dailyHelper, ['birthday' => true]);
-//        } elseif ($createType == "nameDay") {
-//            $noteType = "nameday";
-//            $form = $this->createForm(DailyHelperType::class, $dailyHelper, ['nameDay' => true]);
-//        }
-        $form->handleRequest($request);
-//        dd($form);
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($createType == "note") {
+            $form = $this->createForm(DailyHelperType::class, $dailyHelper, ['note' => true]);
+        } elseif ($createType == "event") {
+            $noteType = "event";
+            $form = $this->createForm(DailyHelperType::class, $dailyHelper, ['event' => true]);
+        } elseif ($createType == "birthday") {
+            $noteType = "birthday";
+            $form = $this->createForm(DailyHelperType::class, $dailyHelper, ['birthday' => true]);
+        } elseif ($createType == "nameDay") {
+            $noteType = "nameday";
+            $form = $this->createForm(DailyHelperType::class, $dailyHelper, ['nameDay' => true]);
+        }
+        if ($request->isMethod('POST')) {
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
 
-//            $dailyHelper->setName();
-            $dailyHelper->setDate(new DateTime());
-            $dailyHelper->setCompleted(false);
-            $dailyHelper->setType($noteType);
-            //Todo: a dailyhelpert majd úgy tudom hozzáadni, hogy sql-ben megnézem a dátumot, hogy ugyanaz legyen, meg a user is
-//            dd($dailyHelper);
-            $entityManager->persist($dailyHelper);
-            $entityManager->flush();
-            
+                if ($createType == "note") {
+                    $dailyHelper->setDate(new DateTime());
+                }
+                $dailyHelper->setCompleted(false);
+                $dailyHelper->setType($noteType);
+                //Todo: a dailyhelpert majd úgy tudom hozzáadni, hogy sql-ben megnézem a dátumot, hogy ugyanaz legyen, meg a user is
+
+                $entityManager->persist($dailyHelper);
+                $entityManager->flush();
+            }
         }
 
         return $this->render('createUpdatePages/dailyHelperForm.html.twig', [

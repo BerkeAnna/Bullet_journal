@@ -2,12 +2,14 @@
     <div class=" row card-body">
         <h3>To Do list</h3>
         <div class="col d-flex justify-content-start">
+            {{ form_start(form) }}
             <div>
                 {{ form_row(form.name) }}
             </div>
             <div class="align-self-center ps-3">
                 {{ form_row(form.submit) }}
             </div>
+            {{ form_end(form) }}
         </div>
         <table class="table">
             <tbody>
