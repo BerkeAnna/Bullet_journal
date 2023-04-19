@@ -96,14 +96,14 @@ html {
     transition: 0.5s;
   }
 
-  .container-starts-250 {
-    min-width: 1170px;
-    margin-left: 235px;
-    margin-right: auto;
-  }
-
 
   body {
+    .container-starts-250 {
+      min-width: 1170px;
+      margin-left: 235px;
+      margin-right: auto;
+    }
+
     height: 50000px;
     background-color: black;
 
