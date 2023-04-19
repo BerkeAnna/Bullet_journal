@@ -8,7 +8,7 @@
     <div class="card col">
         <div class=" card-body">
             <h1>New {{ pageName }}</h1>
-
+            {{ form_start(form) }}
             <div class="row  d-flex  mb-2">
                 <div class="col-1  d-flex justify-content-start ">
                     {{ form_label(form.name) }}
@@ -40,6 +40,7 @@
                     {{ form_widget(form.submit) }}
                 </div>
             </div>
+            {{ form_end(form) }}
         </div>
     </div>
 
