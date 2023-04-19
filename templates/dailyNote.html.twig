@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block bodyExtraClasses %} dailyNote-index {% endblock %}
+
+{% block pageContent %}
+    <div class="row">
+        <div class="col container-fluid">
+            <div class="row card">
+                <div class="col card-body d-flex flex-column justify-content-center align-items-center">
+                    <div class="row">
+                        <h1> < {{ "now"|date("Y.m.d.") }} > </h1>
+                    </div>
+                    <div class="row">
+                        <h2>{{ "now"|date('l') }} </h2>
+                    </div>
+                    <div class="d-flex pt-3">
+                        <button type="button" class="btn red ms-2 me-2"><a
+                                    href="{{ path('createNew', {name: "event"}) }}">New
+                                event</a></button>
+                        <button type="button" class="btn red ms-2 me-2"><a
+                                    href="{{ path('createNew', {name: "note"}) }}">New
+                                note</a>
+                        </button>
+                        <button type="button" class="btn red ms-2 me-2"><a
+                                    href="{{ path('createNew', {name: "birthday"}) }}">New
+                                birthday</a></button>
+                        <button type="button" class="btn red ms-2 me-2"><a
+                                    href="{{ path('createNew', {name: "nameDay"}) }}">New
+                                nameDay</a></button>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                {% include 'dailyNoteWidgets/todoList.html.twig' %}
+                {% include 'dailyNoteWidgets/event.html.twig' %}
+                {% include 'dailyNoteWidgets/holiday.html.twig' %}
+            </div>
+            <div>
+                {% include 'dailyNoteWidgets/note.html.twig' %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

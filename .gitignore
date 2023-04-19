@@ -27,3 +27,5 @@ yarn-error.log
 .env.dev
 .idea
 ###< symfony/webpack-encore-bundle ###
+
+/migrations/Version20230417131930.php

@@ -29,31 +29,7 @@ class DailyNote
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $note;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $todo;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $event;
-
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private $birthday;
-
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private $nameday;
-
-    /**
-     * @ORM\OneToMany(targetEntity=ImageAlbum::class, mappedBy="dailyNotes")
-     */
     private $image;
 
     /**
@@ -64,9 +40,15 @@ class DailyNote
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="dailyNotes")
-     * @ORM\JoinColumn(name="owner", referencedColumnName="id", onDelete="SET NULL")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $owner;
+
+//    /**
+//     * @ORM\ManyToMany(targetEntity=DailyHelper::class, mappedBy="owner")
+//     * @ORM\JoinColumn(name="dailyHelpers_user")
+//     */
+//    private $dailyHelpers;
 
     public function __construct()
     {
@@ -86,66 +68,6 @@ class DailyNote
     public function setDate(DateTimeInterface $date): self
     {
         $this->date = $date;
-
-        return $this;
-    }
-
-    public function getNote(): ?string
-    {
-        return $this->note;
-    }
-
-    public function setNote(string $note): self
-    {
-        $this->note = $note;
-
-        return $this;
-    }
-
-    public function getTodo(): ?string
-    {
-        return $this->todo;
-    }
-
-    public function setTodo(string $todo): self
-    {
-        $this->todo = $todo;
-
-        return $this;
-    }
-
-    public function getEvent(): ?string
-    {
-        return $this->event;
-    }
-
-    public function setEvent(?string $event): self
-    {
-        $this->event = $event;
-
-        return $this;
-    }
-
-    public function getBirthday(): ?DateTimeInterface
-    {
-        return $this->birthday;
-    }
-
-    public function setBirthday(?DateTimeInterface $birthday): self
-    {
-        $this->birthday = $birthday;
-
-        return $this;
-    }
-
-    public function getNameday(): ?DateTimeInterface
-    {
-        return $this->nameday;
-    }
-
-    public function setNameday(?DateTimeInterface $nameday): self
-    {
-        $this->nameday = $nameday;
 
         return $this;
     }
@@ -203,4 +125,31 @@ class DailyNote
 
         return $this;
     }
+
+//    /**
+//     * @return Collection<int, DailyHelper>
+//     */
+//    public function getDailyHelpers(): Collection
+//    {
+//        return $this->dailyHelpers;
+//    }
+//
+//    public function addDailyHelper(DailyHelper $dailyHelper): self
+//    {
+//        if (!$this->dailyHelpers->contains($dailyHelper)) {
+//            $this->dailyHelpers[] = $dailyHelper;
+//            $dailyHelper->addOwner($this);
+//        }
+//
+//        return $this;
+//    }
+//
+//    public function removeDailyHelper(DailyHelper $dailyHelper): self
+//    {
+//        if ($this->dailyHelpers->removeElement($dailyHelper)) {
+//            $dailyHelper->removeOwner($this);
+//        }
+//
+//        return $this;
+//    }
 }
