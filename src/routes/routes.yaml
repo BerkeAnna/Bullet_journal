@@ -10,8 +10,6 @@ createNewNote:
   path: /newNote
   controller: App\Controller\DailyHelperController::TodoHandler
 
-
 createNew:
-  path: /dailyNote/new
+  path: /dailyNote/new/{name}
   controller: App\Controller\DailyHelperController::Handler
-

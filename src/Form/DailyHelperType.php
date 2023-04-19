@@ -79,7 +79,7 @@ class DailyHelperType extends AbstractType
         $resolver->setDefaults([
             'data_class' => DailyHelper::class,
             'todo' => false,
-            'note' => true,
+            'note' => false,
             'event' => false,
             'birthday' => false,
             'nameDay' => false,
