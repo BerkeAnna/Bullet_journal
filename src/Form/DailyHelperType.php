@@ -31,7 +31,7 @@ class DailyHelperType extends AbstractType
             ->add('date', DateType::class, [
                 'data' => new DateTime('now'),
                 'attr' => [
-                    'class' => ' ps-2 pt-1 pb-1'
+                    'class' => 'date-input ps-2 pt-1 pb-1'
                 ]
             ])
             ->add('submit', SubmitType::class, [
@@ -79,7 +79,7 @@ class DailyHelperType extends AbstractType
         $resolver->setDefaults([
             'data_class' => DailyHelper::class,
             'todo' => false,
-            'note' => false,
+            'note' => true,
             'event' => false,
             'birthday' => false,
             'nameDay' => false,

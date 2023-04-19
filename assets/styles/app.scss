@@ -151,6 +151,16 @@ html {
 
         }
 
+        .date-input {
+
+          select {
+            background-color: black;
+            border: 1px solid black;
+            color: $sidebar-text-color;
+            border-radius: 5px;
+          }
+        }
+
         input {
 
           background-color: black;
@@ -158,6 +168,8 @@ html {
           color: $sidebar-text-color;
           border-radius: 5px;
           width: 90%;
+
+
         }
 
         .todo-text-input {

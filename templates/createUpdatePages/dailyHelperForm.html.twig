@@ -25,6 +25,16 @@
                     {{ form_widget(form.description) }}
                 </div>
             </div>
+            {% if pageName == "birthday" or pageName == "nameDay" or pageName == "event" %}
+                <div class="row  d-flex mb-2">
+                    <div class="col-1 d-flex justify-content-start ">
+                        {{ form_label(form.date) }}
+                    </div>
+                    <div class="col-11 d-flex justify-content-around">
+                        {{ form_widget(form.date) }}
+                    </div>
+                </div>
+            {% endif %}
             <div class="row ">
                 <div class="col-2 pt-4">
                     {{ form_widget(form.submit) }}
