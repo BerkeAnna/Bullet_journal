@@ -13,11 +13,13 @@
         {{ form_end(form) }}
         <table class="table">
             <tbody>
-            <tr>
-                <th scope="row">#checkbox#</th>
-                <td>{{ newToDo }}</td>
-            </tr>
+            {% for todo in todos %}
+                <tr>
+                    <th scope="row">#</th>
+                    <td>{{ todo.name }}</td>
+                </tr>
 
+            {% endfor %}
             </tbody>
         </table>
     </div>

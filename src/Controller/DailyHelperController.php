@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\DailyHelper;
 use App\Form\DailyHelperType;
+use App\Repository\DailyHelperRepository;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -12,8 +13,15 @@ use Symfony\Component\HttpFoundation\Request;
 class DailyHelperController extends AbstractController
 {
 
-    public function TodoHandler(Request $request, EntityManagerInterface $entityManager)
+    public function TodoHandler(Request $request, EntityManagerInterface $entityManager, DailyHelperRepository $dailyHelperRepository)
     {
+        $listOfTodos = $dailyHelperRepository->findBy(['type' => 'todo']);
+        $listOfEvent = $dailyHelperRepository->findBy(['type' => 'event']);
+        //TODO: birthday and nameDay will be one find function in repo
+        $listOfBirthday = $dailyHelperRepository->findBy(['type' => 'birthday']);
+        $listOfNameDay = $dailyHelperRepository->findBy(['type' => 'nameDay']);
+        $listOfNote = $dailyHelperRepository->findBy(['type' => 'note']);
+
         $dailyHelper = new DailyHelper();
         $todo = true;
 
@@ -32,11 +40,15 @@ class DailyHelperController extends AbstractController
                 return $this->redirect($this->generateUrl('dailyNoteIndex'));
             }
         }
-
         $newToDo = "ezt majd meg kell csinálni";
         return $this->render('dailyNote.html.twig', [
             'form' => $form->createView(),
-            'newToDo' => $newToDo
+            'newToDo' => $newToDo,
+            'todos' => $listOfTodos,
+            'notes' => $listOfNote,
+            'events' => $listOfEvent,
+            'birthdays' => $listOfBirthday,
+            'nameDays' => $listOfNameDay
         ]);
     }
 

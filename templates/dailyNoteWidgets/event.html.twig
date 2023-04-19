@@ -1,6 +1,16 @@
 <div class="card col-3">
     <div class=" row card-body">
         <h3>Events</h3>
+        <table class="table">
+            <tbody>
+            {% for event in events %}
+                <tr>
+                    <th scope="row">#</th>
+                    <td>{{ event.name }}</td>
+                </tr>
 
+            {% endfor %}
+            </tbody>
+        </table>
     </div>
 </div>

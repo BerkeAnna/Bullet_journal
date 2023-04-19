@@ -1,5 +1,24 @@
 <div class="card col-3">
     <div class=" row card-body">
         <h3>Holidays</h1>
+            <table class="table">
+                <tbody>
+                {% for birthday in birthdays %}
+                    <tr>
+                        <th scope="row">#</th>
+                        <td>{{ birthday.name }}</td>
+                    </tr>
+
+                {% endfor %}
+
+                {% for nameDay in nameDays %}
+                    <tr>
+                        <th scope="row">#</th>
+                        <td>{{ nameDay.name }}</td>
+                    </tr>
+
+                {% endfor %}
+                </tbody>
+            </table>
     </div>
 </div>
