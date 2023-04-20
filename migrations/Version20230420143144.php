@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20230415100242 extends AbstractMigration
+final class Version20230420143144 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -24,8 +24,11 @@ final class Version20230415100242 extends AbstractMigration
         $this->addSql('CREATE SEQUENCE bookTags_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE SEQUENCE books_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE SEQUENCE dailyNotes_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
+        $this->addSql('CREATE SEQUENCE daily_helper_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
+        $this->addSql('CREATE SEQUENCE habit_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE SEQUENCE imageAlbums_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE SEQUENCE moodTrackers_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
+        $this->addSql('CREATE SEQUENCE proba_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE SEQUENCE readingTrackers_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE SEQUENCE users_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE TABLE bookCategories (id INT NOT NULL, owner INT DEFAULT NULL, name VARCHAR(255) NOT NULL, public_to_others BOOLEAN NOT NULL, PRIMARY KEY(id))');
@@ -42,14 +45,18 @@ final class Version20230415100242 extends AbstractMigration
         $this->addSql('CREATE TABLE tags (book_id INT NOT NULL, book_tag_id INT NOT NULL, PRIMARY KEY(book_id, book_tag_id))');
         $this->addSql('CREATE INDEX IDX_6FBC942616A2B381 ON tags (book_id)');
         $this->addSql('CREATE INDEX IDX_6FBC94269305689C ON tags (book_tag_id)');
-        $this->addSql('CREATE TABLE dailyNotes (id INT NOT NULL, owner INT DEFAULT NULL, date TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, note VARCHAR(255) NOT NULL, todo VARCHAR(255) NOT NULL, event VARCHAR(255) DEFAULT NULL, birthday TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT NULL, nameday TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT NULL, moodTracker INT DEFAULT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE TABLE dailyNotes (id INT NOT NULL, owner_id INT NOT NULL, date TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, image VARCHAR(255) NOT NULL, moodTracker INT DEFAULT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE UNIQUE INDEX UNIQ_D9F9E606F9E21957 ON dailyNotes (moodTracker)');
-        $this->addSql('CREATE INDEX IDX_D9F9E606CF60E67C ON dailyNotes (owner)');
+        $this->addSql('CREATE INDEX IDX_D9F9E6067E3C61F9 ON dailyNotes (owner_id)');
+        $this->addSql('CREATE TABLE daily_helper (id INT NOT NULL, name VARCHAR(255) NOT NULL, description VARCHAR(255) DEFAULT NULL, date TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, completed BOOLEAN NOT NULL, type VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE TABLE habit (id INT NOT NULL, owner_id INT NOT NULL, name VARCHAR(255) NOT NULL, description VARCHAR(255) DEFAULT NULL, competed BOOLEAN NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE INDEX IDX_44FE21727E3C61F9 ON habit (owner_id)');
         $this->addSql('CREATE TABLE imageAlbums (id INT NOT NULL, owner INT DEFAULT NULL, title VARCHAR(255) NOT NULL, image VARCHAR(255) NOT NULL, description VARCHAR(255) NOT NULL, date TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, dailyNote INT DEFAULT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX IDX_6E332A4CCF60E67C ON imageAlbums (owner)');
         $this->addSql('CREATE INDEX IDX_6E332A4C20D6AABC ON imageAlbums (dailyNote)');
         $this->addSql('CREATE TABLE moodTrackers (id INT NOT NULL, owner INT DEFAULT NULL, name VARCHAR(255) NOT NULL, date TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX IDX_EEF8E945CF60E67C ON moodTrackers (owner)');
+        $this->addSql('CREATE TABLE proba (id INT NOT NULL, lehetnull VARCHAR(255) DEFAULT NULL, nemlehetnull VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE TABLE readingTrackers (id INT NOT NULL, owner INT DEFAULT NULL, date TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, read_pages INT DEFAULT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX IDX_946C0246CF60E67C ON readingTrackers (owner)');
         $this->addSql('CREATE TABLE users (id INT NOT NULL, username VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, salt VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
@@ -67,7 +74,8 @@ final class Version20230415100242 extends AbstractMigration
         $this->addSql('ALTER TABLE tags ADD CONSTRAINT FK_6FBC942616A2B381 FOREIGN KEY (book_id) REFERENCES books (id) ON DELETE CASCADE NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE tags ADD CONSTRAINT FK_6FBC94269305689C FOREIGN KEY (book_tag_id) REFERENCES bookTags (id) ON DELETE CASCADE NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE dailyNotes ADD CONSTRAINT FK_D9F9E606F9E21957 FOREIGN KEY (moodTracker) REFERENCES moodTrackers (id) ON DELETE SET NULL NOT DEFERRABLE INITIALLY IMMEDIATE');
-        $this->addSql('ALTER TABLE dailyNotes ADD CONSTRAINT FK_D9F9E606CF60E67C FOREIGN KEY (owner) REFERENCES users (id) ON DELETE SET NULL NOT DEFERRABLE INITIALLY IMMEDIATE');
+        $this->addSql('ALTER TABLE dailyNotes ADD CONSTRAINT FK_D9F9E6067E3C61F9 FOREIGN KEY (owner_id) REFERENCES users (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
+        $this->addSql('ALTER TABLE habit ADD CONSTRAINT FK_44FE21727E3C61F9 FOREIGN KEY (owner_id) REFERENCES users (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE imageAlbums ADD CONSTRAINT FK_6E332A4CCF60E67C FOREIGN KEY (owner) REFERENCES users (id) ON DELETE SET NULL NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE imageAlbums ADD CONSTRAINT FK_6E332A4C20D6AABC FOREIGN KEY (dailyNote) REFERENCES dailyNotes (id) ON DELETE SET NULL NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE moodTrackers ADD CONSTRAINT FK_EEF8E945CF60E67C FOREIGN KEY (owner) REFERENCES users (id) ON DELETE SET NULL NOT DEFERRABLE INITIALLY IMMEDIATE');
@@ -82,8 +90,11 @@ final class Version20230415100242 extends AbstractMigration
         $this->addSql('DROP SEQUENCE bookTags_id_seq CASCADE');
         $this->addSql('DROP SEQUENCE books_id_seq CASCADE');
         $this->addSql('DROP SEQUENCE dailyNotes_id_seq CASCADE');
+        $this->addSql('DROP SEQUENCE daily_helper_id_seq CASCADE');
+        $this->addSql('DROP SEQUENCE habit_id_seq CASCADE');
         $this->addSql('DROP SEQUENCE imageAlbums_id_seq CASCADE');
         $this->addSql('DROP SEQUENCE moodTrackers_id_seq CASCADE');
+        $this->addSql('DROP SEQUENCE proba_id_seq CASCADE');
         $this->addSql('DROP SEQUENCE readingTrackers_id_seq CASCADE');
         $this->addSql('DROP SEQUENCE users_id_seq CASCADE');
         $this->addSql('ALTER TABLE bookCategories DROP CONSTRAINT FK_2A9CF2E3CF60E67C');
@@ -96,7 +107,8 @@ final class Version20230415100242 extends AbstractMigration
         $this->addSql('ALTER TABLE tags DROP CONSTRAINT FK_6FBC942616A2B381');
         $this->addSql('ALTER TABLE tags DROP CONSTRAINT FK_6FBC94269305689C');
         $this->addSql('ALTER TABLE dailyNotes DROP CONSTRAINT FK_D9F9E606F9E21957');
-        $this->addSql('ALTER TABLE dailyNotes DROP CONSTRAINT FK_D9F9E606CF60E67C');
+        $this->addSql('ALTER TABLE dailyNotes DROP CONSTRAINT FK_D9F9E6067E3C61F9');
+        $this->addSql('ALTER TABLE habit DROP CONSTRAINT FK_44FE21727E3C61F9');
         $this->addSql('ALTER TABLE imageAlbums DROP CONSTRAINT FK_6E332A4CCF60E67C');
         $this->addSql('ALTER TABLE imageAlbums DROP CONSTRAINT FK_6E332A4C20D6AABC');
         $this->addSql('ALTER TABLE moodTrackers DROP CONSTRAINT FK_EEF8E945CF60E67C');
@@ -107,8 +119,11 @@ final class Version20230415100242 extends AbstractMigration
         $this->addSql('DROP TABLE books');
         $this->addSql('DROP TABLE tags');
         $this->addSql('DROP TABLE dailyNotes');
+        $this->addSql('DROP TABLE daily_helper');
+        $this->addSql('DROP TABLE habit');
         $this->addSql('DROP TABLE imageAlbums');
         $this->addSql('DROP TABLE moodTrackers');
+        $this->addSql('DROP TABLE proba');
         $this->addSql('DROP TABLE readingTrackers');
         $this->addSql('DROP TABLE users');
         $this->addSql('DROP TABLE messenger_messages');
