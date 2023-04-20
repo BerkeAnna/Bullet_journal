@@ -9,3 +9,7 @@ dailyNoteIndex:
 createNew:
   path: /dailyNote/new/{name}
   controller: App\Controller\DailyHelperController::Handler
+
+todo:
+  path: /todo/list
+  controller: App\Controller\DailyHelperController::listOfTodo

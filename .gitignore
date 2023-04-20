@@ -29,3 +29,6 @@ yarn-error.log
 ###< symfony/webpack-encore-bundle ###
 
 /migrations/Version20230417131930.php
+
+/package-lock.json
+/package.json

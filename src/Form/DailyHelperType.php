@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Length;
 
 class DailyHelperType extends AbstractType
 {
@@ -20,7 +21,13 @@ class DailyHelperType extends AbstractType
             ->remove('completed')
             ->add('name', TextType::class, [
                 'attr' => [
-                    'class' => ' ps-2 pt-1 pb-1'
+                    'class' => ' ps-2 pt-1 pb-1',
+                    'maxlength' => 25
+                ],
+                'constraints' => [
+                    new Length([
+                        'max' => 25,
+                    ])
                 ]
             ])
             ->add('description', TextType::class, [
@@ -47,7 +54,13 @@ class DailyHelperType extends AbstractType
                 ->add('name', TextType::class, [
                     'attr' => [
                         'placeholder' => 'Add a new todo here',
-                        'class' => 'todo-text-input ps-2 pt-1 pb-1'
+                        'class' => 'todo-text-input ps-2 pt-1 pb-1',
+                        'maxlength' => 35
+                    ],
+                    'constraints' => [
+                        new Length([
+                            'max' => 35,
+                        ])
                     ],
                     'label' => false,
                 ])
