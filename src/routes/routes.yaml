@@ -13,3 +13,7 @@ createNew:
 todo:
   path: /todo/list
   controller: App\Controller\DailyHelperController::listOfTodo
+
+habit:
+  path: /habit
+  controller: App\Controller\HabitController::index
