@@ -17,3 +17,7 @@ todo:
 habit:
   path: /habit
   controller: App\Controller\HabitController::index
+
+newHabit:
+  path: /habit/new
+  controller: App\Controller\HabitController::handler

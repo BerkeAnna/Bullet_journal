@@ -27,16 +27,16 @@ class Habit
      */
     private $description;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=User::class)
-     * @ORM\JoinColumn(nullable=false)
-     */
-//    private $owner;
+//    /**
+//     * @ORM\ManyToOne(targetEntity=User::class)
+//     * @ORM\JoinColumn(nullable=false)
+//     */
+////    private $owner;
 
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $competed;
+//    /**
+//     * @ORM\Column(type="boolean")
+//     */
+//    private $competed;
 
     public function getId(): ?int
     {
@@ -79,15 +79,15 @@ class Habit
 //        return $this;
 //    }
 
-    public function getCompeted(): ?bool
-    {
-        return $this->competed;
-    }
-
-    public function setCompeted(bool $competed): self
-    {
-        $this->competed = $competed;
-
-        return $this;
-    }
+//    public function getCompeted(): ?bool
+//    {
+//        return $this->competed;
+//    }
+//
+//    public function setCompeted(bool $competed): self
+//    {
+//        $this->competed = $competed;
+//
+//        return $this;
+//    }
 }
