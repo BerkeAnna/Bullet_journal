@@ -47,6 +47,15 @@ class HabitRepository extends ServiceEntityRepository
         }
     }
 
+    public function findHabitName()
+    {
+        return $this->createQueryBuilder('h')
+            ->select('h.name')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return Habit[] Returns an array of Habit objects
     //  */

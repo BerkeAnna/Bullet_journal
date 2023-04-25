@@ -28,7 +28,7 @@ yarn-error.log
 .idea
 ###< symfony/webpack-encore-bundle ###
 
-/migrations/Version20230420153049.php
+#/migrations/Version20230420153049.php
 
 /package-lock.json
 /package.json

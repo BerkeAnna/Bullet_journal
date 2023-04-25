@@ -23,9 +23,14 @@ class HabitTracker
     private $date;
 
     /**
-     * @ORM\OneToOne(targetEntity=Habit::class, cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Column(type="boolean")
      */
+    private $completed;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Habit::class, mappedBy="habitTracker")
+     */
+
     private $habit;
 
     public function getId(): ?int
@@ -56,4 +61,21 @@ class HabitTracker
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getCompleted()
+    {
+        return $this->completed;
+    }
+
+    /**
+     * @param mixed $completed
+     */
+    public function setCompleted($completed): void
+    {
+        $this->completed = $completed;
+    }
+
 }

@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block bodyExtraClasses %} {% endblock %}
+
+{% block pageContent %}
+
+<div class="card col">
+    <div class=" card-body">
+    <h1>Habit Tracker</h1>
+        <h2>{{ year }}.{{ month }}.{{ day }}</h2>
+    {{ form_start(form) }}
+
+    <table>
+        <thead>
+        <tr>
+            <th>Habit</th>
+            <th>Completed?</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for habit in form.habit %}
+
+            <tr>
+                <td>{{ habit.vars.label }}</td>
+                <td>{{ form_widget(habit) }}</td>
+            </tr>
+
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {{ form_end(form) }}
+
+    </div>
+</div>
+{% endblock %}
