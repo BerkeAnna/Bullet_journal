@@ -28,7 +28,6 @@ class HabitTrackerController extends AbstractController
 
         if ($request->isMethod('POST')) {
 
-//            dd($form->handleRequest($request));
             $form->handleRequest($request);
             if ($form->isSubmitted() && $form->isValid()) {
                 $entityManager->persist($habitTracker);

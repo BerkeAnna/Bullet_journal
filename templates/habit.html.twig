@@ -32,6 +32,7 @@
                         <thead>
                             <tr>
                                 <th>#</th>
+{#                                todo: for day in 1..dayNumberOfMonth#}
                                 {% for day in 1..30 %}
                                     <td><a href={{ path('newCompletedHabits', {year: yearNow, month: monthNow, day:day})}}>{{ day }}</a></td>
                                 {% endfor %}
@@ -42,7 +43,11 @@
                             <tr >
                                 <th>{{ habit.name }}</th>
                                 {% for day in 1..30 %}
-                                    <td> - </td>
+                                    {% if day in days %}
+                                        <td> - </td>
+                                        {%  else %}
+                                        <td> ??</td>
+                                    {% endif %}
                                 {% endfor %}
                             </tr>
                         {% endfor %}

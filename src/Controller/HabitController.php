@@ -13,9 +13,32 @@ class HabitController extends AbstractController
 {
     public function index(HabitRepository $habitRepository)
     {
+        //todo: át kell majd adni külön egy tömbben a daytömböket. ÉS valahogy így fogom tudni lekérni, hogy
+        //todo: csak a jó helyen jelölje be
         $habits= $habitRepository->findAll();
+
+        $completedHabits = $habitRepository->completedHabits(1);
+        $tos = ($completedHabits[1]["date"]);
+        $dayss= $tos->format('d');
+//        dd($completedHabits);
+        $days = [];
+
+
+        //get datetimes, but we need only days
+        for($i=0; $i<count($completedHabits); $i++){
+            //select the days
+            $dateWithZeros= $completedHabits[$i]["date"]->format('d');
+            //if day is less then 10 it has 0, it is trim that
+            $dateString = ltrim($dateWithZeros, '0');
+            //convert string to int
+            $date = intval($dateString);
+            array_push($days, $date );
+        }
+//        dd($days[0]);
+
         return $this->render('habit.html.twig',[
-            'habits' => $habits
+            'habits' => $habits,
+            'days' => $days,
         ]);
     }
 
@@ -23,6 +46,7 @@ class HabitController extends AbstractController
     {
 
         $habit = new Habit();
+
 
         $form = $this->createForm(HabitType::class, $habit);
 
