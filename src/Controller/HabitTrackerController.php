@@ -26,6 +26,8 @@ class HabitTrackerController extends AbstractController
         $form = $this->createForm(HabitTrackerType::class, $habitTracker);
 
         if ($request->isMethod('POST')) {
+
+//            dd($form->handleRequest($request));
             $form->handleRequest($request);
             if ($form->isSubmitted() && $form->isValid()) {
                 $entityManager->persist($habitTracker);
@@ -33,11 +35,7 @@ class HabitTrackerController extends AbstractController
 
                 $this->addFlash('success', 'Habit has been updated.');
 
-                return $this->redirectToRoute('hb', [
-                    'year' => $year,
-                    'month' => $month,
-                    'day' => $day,
-                ]);
+                return $this->redirectToRoute('habit');
             }
         }
 

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\HabitRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -26,6 +28,18 @@ class Habit
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $description;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=HabitTracker::class, mappedBy="habits")
+     */
+    private $habitTrackers;
+
+
+
+    public function __construct()
+    {
+        $this->habitTrackers = new ArrayCollection();
+    }
 
 //    /**
 //     * @ORM\ManyToOne(targetEntity=User::class)
@@ -90,4 +104,32 @@ class Habit
 //
 //        return $this;
 //    }
+
+/**
+ * @return Collection<int, HabitTracker>
+ */
+public function getHabitTrackers(): Collection
+{
+    return $this->habitTrackers;
+}
+
+public function addHabitTracker(HabitTracker $habitTracker): self
+{
+    if (!$this->habitTrackers->contains($habitTracker)) {
+        $this->habitTrackers[] = $habitTracker;
+        $habitTracker->addHabit($this);
+    }
+
+    return $this;
+}
+
+public function removeHabitTracker(HabitTracker $habitTracker): self
+{
+    if ($this->habitTrackers->removeElement($habitTracker)) {
+        $habitTracker->removeHabit($this);
+    }
+
+    return $this;
+}
+
 }
