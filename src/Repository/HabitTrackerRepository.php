@@ -47,6 +47,20 @@ class HabitTrackerRepository extends ServiceEntityRepository
         }
     }
 
+    public function completedHabits($id)
+    {
+        $qb = $this->createQueryBuilder('h')
+            ->select("EXTRACT(DAY FROM h.date) AS DAY")
+            ->innerJoin('h.habitTrackers', 'ht')
+            ->innerJoin('ht.habits', 'hb')
+            ->where('hb.id = :id')
+            ->setParameter('id', $id);
+
+        $results = $qb->getQuery()->getResult();
+        return $results;
+
+    }
+
     // /**
     //  * @return HabitTracker[] Returns an array of HabitTracker objects
     //  */

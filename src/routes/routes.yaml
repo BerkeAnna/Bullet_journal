@@ -22,6 +22,6 @@ newHabit:
   path: /habit/new
   controller: App\Controller\HabitController::handler
 
-hb:
+newCompletedHabits:
   path: /hb/{year}/{month}/{day}
   controller: App\Controller\HabitTrackerController::index

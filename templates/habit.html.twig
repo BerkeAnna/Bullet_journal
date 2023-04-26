@@ -1,7 +1,9 @@
 {% extends 'base.html.twig' %}
 {% set days_in_month = date('now')|date_modify('last day of this month')|date('d') %}
 {% set dayName = 1 %}
-
+{% set yearNow = "now"|date("Y") %}
+{% set monthNow = "now"|date("m")  %}
+{% set dayNow = "now"|date("d") %}
 
 {% block bodyExtraClasses %} habit-index {% endblock %}
 
@@ -11,7 +13,7 @@
             <div class="row card">
                 <div class="col card-body d-flex flex-column justify-content-center align-items-center">
                     <div class="row">
-                        <h1> < {{ "now"|date("Y.m.d.") }} > </h1>
+                        <h1> < {{ "now"|date("Y.m.") }} > </h1>
                     </div>
                     <div class="row">
                         <h2>{{ "now"|date('l') }} </h2>
@@ -31,7 +33,7 @@
                             <tr>
                                 <th>#</th>
                                 {% for day in 1..30 %}
-                                    <td>{{ day }}</td>
+                                    <td><a href={{ path('newCompletedHabits', {year: yearNow, month: monthNow, day:day})}}>{{ day }}</a></td>
                                 {% endfor %}
                             </tr>
                         </thead>
@@ -40,7 +42,7 @@
                             <tr >
                                 <th>{{ habit.name }}</th>
                                 {% for day in 1..30 %}
-                                    <td> cb</td>
+                                    <td> - </td>
                                 {% endfor %}
                             </tr>
                         {% endfor %}
