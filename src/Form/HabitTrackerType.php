@@ -17,14 +17,14 @@ class HabitTrackerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('habit', EntityType::class, [
+            ->add('habits', EntityType::class, [
                 'class' => Habit::class,
                 'multiple' => true,
                 'choice_label' => 'name',
                 'expanded' => true,
                 'by_reference' => false,
                 'attr' => [
-                    'class' => 'check-boxes'
+
                 ]
 
             ])
@@ -40,11 +40,11 @@ class HabitTrackerType extends AbstractType
 //
 //            ])
 
-             ->add('submit', SubmitType::class, [
+            ->add('submit', SubmitType::class, [
                 'attr' => [
                     'class' => 'btn',
-                    ]
-             ]);
+                ]
+            ]);
 
     }
 

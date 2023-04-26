@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\HabitTrackerRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -22,16 +24,17 @@ class HabitTracker
      */
     private $date;
 
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $completed;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Habit::class, mappedBy="habitTracker")
+     * @ORM\ManyToMany(targetEntity=Habit::class, inversedBy="habitTrackers")
      */
+    private $habits;
 
-    private $habit;
+    public function __construct()
+    {
+        $this->habits = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -50,32 +53,29 @@ class HabitTracker
         return $this;
     }
 
-    public function getHabit(): ?Habit
+    /**
+     * @return Collection<int, Habit>
+     */
+    public function getHabits(): Collection
     {
-        return $this->habit;
+        return $this->habits;
     }
 
-    public function setHabit(Habit $habit): self
+    public function addHabit(Habit $habit): self
     {
-        $this->habit = $habit;
+        if (!$this->habits->contains($habit)) {
+            $this->habits[] = $habit;
+        }
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getCompleted()
+    public function removeHabit(Habit $habit): self
     {
-        return $this->completed;
+        $this->habits->removeElement($habit);
+
+        return $this;
     }
 
-    /**
-     * @param mixed $completed
-     */
-    public function setCompleted($completed): void
-    {
-        $this->completed = $completed;
-    }
 
 }
