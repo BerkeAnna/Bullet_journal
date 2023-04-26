@@ -19,7 +19,7 @@ class HabitController extends AbstractController
 
 //        dd($request);
 
-//        $daysOfMonth=cal_days_in_month(CAL_GREGORIAN,month,year);
+
 
         $completedHabits = $habitRepository->completedHabits(1);
         $tos = ($completedHabits[1]["date"]);
@@ -39,6 +39,20 @@ class HabitController extends AbstractController
             array_push($days, $date );
         }
 //        dd($days[0]);
+
+        $habitsName = [];
+        for($i =0 ; $i<count($habits); $i++){
+            $habitsName[$i] = $habits[$i]->getName();
+            }
+
+        $completedHabitsByName = array();
+            for($i =0 ; $i<count($habits); $i++){
+                //todo: Instead of 1, you need an array that stores the days when completed
+                $completedHabitsByName[$habitsName[$i]] = "1";
+            }
+
+//            dd($completedHabitsByName);
+
 
         return $this->render('habit.html.twig',[
             'habits' => $habits,
