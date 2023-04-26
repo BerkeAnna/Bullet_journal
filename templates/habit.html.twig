@@ -9,7 +9,11 @@
 {% if monthNow == 4 or  monthNow == 6 or  monthNow == 11 or  monthNow == 9   %}
     {% set dayOfMonth = 30 %}
 {% elseif monthNow == 2 %}
-    {% set dayOfMonth = 28 %}
+    {% if yearNow is divisible by(4) %}
+        {% set dayOfMonth = 29 %}
+    {% else %}
+        {% set dayOfMonth = 28 %}
+    {% endif %}
 {% endif %}
 
 {% block bodyExtraClasses %} habit-index {% endblock %}
