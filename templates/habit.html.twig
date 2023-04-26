@@ -4,6 +4,13 @@
 {% set yearNow = "now"|date("Y") %}
 {% set monthNow = "now"|date("m")  %}
 {% set dayNow = "now"|date("d") %}
+{% set dayOfMonth = 31 %}
+
+{% if monthNow == 4 or  monthNow == 6 or  monthNow == 11 or  monthNow == 9   %}
+    {% set dayOfMonth = 30 %}
+{% elseif monthNow == 2 %}
+    {% set dayOfMonth = 28 %}
+{% endif %}
 
 {% block bodyExtraClasses %} habit-index {% endblock %}
 
@@ -28,12 +35,13 @@
             <div class="card row">
                 <div class="  card-body">
                     <h3>Habits</h3>
+                    {{ dayOfMonth }}
                     <table class="table table-borderless mt-5">
                         <thead>
                             <tr>
                                 <th>#</th>
 {#                                todo: for day in 1..dayNumberOfMonth#}
-                                {% for day in 1..30 %}
+                                {% for day in 1..dayOfMonth %}
                                     <td><a href={{ path('newCompletedHabits', {year: yearNow, month: monthNow, day:day})}}>{{ day }}</a></td>
                                 {% endfor %}
                             </tr>
@@ -42,7 +50,7 @@
                         {% for habit in habits %}
                             <tr >
                                 <th>{{ habit.name }}</th>
-                                {% for day in 1..30 %}
+                                {% for day in 1..dayOfMonth %}
                                     {% if day in days %}
                                         <td> - </td>
                                         {%  else %}

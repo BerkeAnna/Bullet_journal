@@ -11,11 +11,15 @@ use Symfony\Component\HttpFoundation\Request;
 
 class HabitController extends AbstractController
 {
-    public function index(HabitRepository $habitRepository)
+    public function index(Request $request, HabitRepository $habitRepository)
     {
         //todo: át kell majd adni külön egy tömbben a daytömböket. ÉS valahogy így fogom tudni lekérni, hogy
         //todo: csak a jó helyen jelölje be
         $habits= $habitRepository->findAll();
+
+//        dd($request);
+
+//        $daysOfMonth=cal_days_in_month(CAL_GREGORIAN,month,year);
 
         $completedHabits = $habitRepository->completedHabits(1);
         $tos = ($completedHabits[1]["date"]);
