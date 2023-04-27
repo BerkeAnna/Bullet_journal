@@ -4,6 +4,13 @@ $sidebar-bg: #191c24;
 $sidebar-darkgrey: #343a40;
 $sidebar-text-color: #6C7293;
 $red-color: #EB1616;
+$orange-color: #eb5616;
+$yellow-color: #ebc816;
+$green-color: #16eb32;
+$blue-color: #16e4eb;
+$dark-blue-color: #1628eb;
+$purple-color: #6e009a;
+$pink-color: #eb168f;
 
 $roboto-font: 'Roboto', sans-serif;
 $open-font: 'Open', sans-serif;
@@ -143,12 +150,10 @@ html {
 
 
         .create-text-input {
-          //input {
           background-color: $sidebar-bg;
           border: 1px solid black;
           border-radius: 5px;
           color: red;
-          //}
 
         }
 
@@ -196,7 +201,81 @@ html {
         }
 
         table {
-          color: white;
+          color: $sidebar-text-color;
+          background-color: $sidebar-bg;
+          .completed-red{
+            background-color: $red-color;
+            &:hover {
+              background-color: darken($red-color, 10%);
+            }
+          }
+
+          .completed-orange{
+            background-color: $orange-color;
+            &:hover {
+              background-color: darken($orange-color, 10%);
+            }
+          }
+
+          .completed-yellow{
+            background-color: $yellow-color;
+            &:hover {
+              background-color: darken($yellow-color, 10%);
+            }
+          }
+
+          .completed-green{
+            background-color: $green-color;
+            &:hover {
+              background-color: darken($green-color, 10%);
+            }
+          }
+
+          .completed-light-blue{
+            background-color: $blue-color;
+            &:hover {
+              background-color: darken($blue-color, 10%);
+            }
+          }
+
+          .completed-dark-blue{
+            background-color: $dark-blue-color;
+            &:hover {
+              background-color: darken($dark-blue-color, 10%);
+            }
+          }
+
+          .completed-purple{
+            background-color: $purple-color;
+            &:hover {
+              background-color: darken($purple-color, 10%);
+            }
+          }
+
+          .completed-pink{
+            background-color: $pink-color;
+            &:hover {
+              background-color: darken($pink-color, 10%);
+            }
+          }
+          .habit {
+            &:hover {
+              background-color: black;
+            }
+          }
+          td{
+            a {
+              color: $sidebar-text-color;
+              text-decoration: none;
+              font-weight: 600;
+
+              &:hover{
+                color: white;
+              }
+            }
+
+          }
+
         }
 
         button {

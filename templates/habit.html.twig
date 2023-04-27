@@ -40,10 +40,7 @@
             <div class="card row">
                 <div class="  card-body">
                     <h3>Habits</h3>
-                    {{ dayOfMonth }}
-                    {{ days[0] }}
-                    {{ names[0] }}
-                    <table class="table table-borderless mt-5">
+                    <table class="table table-borderless mt-5 mb-5">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -65,20 +62,31 @@
                                         {% endif %}
                                     {% endfor %}
                                     {% if completionStatus %}
-                                        <td class="bg-danger"></td>
+                                        {% if day >0 and day < 5 %}
+                                            <td class="completed-red "></td>
+                                        {% elseif day >= 5 and day < 9  %}
+                                            <td class="completed-orange "></td>
+                                        {% elseif day >= 9 and day < 13  %}
+                                            <td class="completed-yellow "></td>
+                                        {% elseif day >= 13 and day < 17  %}
+                                            <td class="completed-green "></td>
+                                        {% elseif day >= 17 and day < 21  %}
+                                            <td class="completed-light-blue "></td>
+                                        {% elseif day >= 21 and day < 24  %}
+                                            <td class="completed-dark-blue "></td>
+                                        {% elseif day >= 24 and day < 28  %}
+                                            <td class="completed-purple "></td>
+                                        {% elseif day >= 28 and day < 31  %}
+                                            <td class="completed-pink "></td>
+                                        {% endif %}
                                     {% else %}
-                                        <td >  </td>
+                                        <td class=" habit">  </td>
                                     {% endif %}
                                 {% endfor %}
                             </tr>
                         {% endfor %}
                         </tbody>
                     </table>
-                    <div class=" d-flex justify-content-end">
-                        <button type="button" class="btn red ms-2 "><a
-                                href=#>Save</a></button>
-                    </div>
-                    ------------------------------------------------
 
                 </div>
             </div>
