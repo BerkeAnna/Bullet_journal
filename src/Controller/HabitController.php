@@ -18,32 +18,43 @@ class HabitController extends AbstractController
         $habits= $habitRepository->findAll();
 
 //        dd($request);
+        $monthNow = date('m');
 
-
-
-        $completedHabits = $habitRepository->completedHabits(1);
+//        $completedHabits = $habitRepository->completedHabits(1);
+        $completedHabits = $habitRepository->completedHabitsWithName();
         $tos = ($completedHabits[1]["date"]);
         $dayss= $tos->format('d');
 //        dd($completedHabits);
         $days = [];
+        $nameArray = [];
 
 
         //get datetimes, but we need only days
         for($i=0; $i<count($completedHabits); $i++){
+            $name = $completedHabits[$i]["name"];
+            $month =  $completedHabits[$i]["date"]->format('m');
             //select the days
-            $dateWithZeros= $completedHabits[$i]["date"]->format('d');
-            //if day is less then 10 it has 0, it is trim that
-            $dateString = ltrim($dateWithZeros, '0');
-            //convert string to int
-            $date = intval($dateString);
-            array_push($days, $date );
+            if($month == $monthNow) {
+                $dateWithZeros = $completedHabits[$i]["date"]->format('d');
+                //if day is less then 10 it has 0, it is trim that
+                $dateString = ltrim($dateWithZeros, '0');
+                //convert string to int
+                $date = intval($dateString);
+                //take the day and habitname to $daysPerDate
+                array_push($nameArray, $name);
+                //to the days array the $daysPerDate
+                array_push($days, $date);
+                //$daysPerDate is empty, because if it isn't empty it will take it in more
+                $daysPerDate = [];
+            }
         }
-//        dd($days[0]);
+
 
         $habitsName = [];
         for($i =0 ; $i<count($habits); $i++){
             $habitsName[$i] = $habits[$i]->getName();
             }
+//        dd($nameArray);
 
         $completedHabitsByName = array();
             for($i =0 ; $i<count($habits); $i++){
@@ -51,12 +62,13 @@ class HabitController extends AbstractController
                 $completedHabitsByName[$habitsName[$i]] = "1";
             }
 
-//            dd($completedHabitsByName);
+//            dd($completedHabits);
 
 
         return $this->render('habit.html.twig',[
             'habits' => $habits,
             'days' => $days,
+            'names'=>$nameArray
         ]);
     }
 

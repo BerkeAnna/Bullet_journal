@@ -71,6 +71,18 @@ class HabitRepository extends ServiceEntityRepository
 
     }
 
+    public function completedHabitsWithName()
+    {
+        $qb = $this->createQueryBuilder('h')
+            ->select('ht.date, h.name')
+            ->innerJoin('h.habitTrackers', 'ht')
+            ->innerJoin('ht.habits', 'hb') ;
+
+        $results = $qb->getQuery()->getResult();
+        return $results;
+
+    }
+
     // /**
     //  * @return Habit[] Returns an array of Habit objects
     //  */

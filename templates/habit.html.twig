@@ -5,6 +5,7 @@
 {% set monthNow = "now"|date("m")  %}
 {% set dayNow = "now"|date("d") %}
 {% set dayOfMonth = 31 %}
+{% set d = days|length %}
 
 {% if monthNow == 4 or  monthNow == 6 or  monthNow == 11 or  monthNow == 9   %}
     {% set dayOfMonth = 30 %}
@@ -40,6 +41,8 @@
                 <div class="  card-body">
                     <h3>Habits</h3>
                     {{ dayOfMonth }}
+                    {{ days[0] }}
+                    {{ names[0] }}
                     <table class="table table-borderless mt-5">
                         <thead>
                             <tr>
@@ -52,13 +55,19 @@
                         </thead>
                         <tbody>
                         {% for habit in habits %}
-                            <tr >
-                                <th>{{ habit.name }}</th>
+                            <tr>
+                                <th >{{ habit.name }}</th>
                                 {% for day in 1..dayOfMonth %}
-                                    {% if day in days %}
-                                        <td> - </td>
-                                        {%  else %}
-                                        <td> ??</td>
+                                    {% set completionStatus = false %}
+                                    {% for i in 0..d-1 %}
+                                        {% if day == days[i] and names[i] == habit.name %}
+                                            {% set completionStatus = true %}
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if completionStatus %}
+                                        <td class="bg-danger"></td>
+                                    {% else %}
+                                        <td >  </td>
                                     {% endif %}
                                 {% endfor %}
                             </tr>
