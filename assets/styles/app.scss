@@ -287,16 +287,14 @@ html {
           border: 10px solid #674421;
           color: white;
           background-color: #3f2914;
+          box-shadow: 5px 10px black;
 
           tr {
             height: 150px;
             border-bottom: 5px solid #674421;
-            //background-color: #0a53be;
+            box-shadow: 0 10px #1f150a;
             td{
               width: 150px;
-              //width: 50px;
-              //background-color: #B0413E;
-              //border: 2px solid black;
               text-align: center;
 
               .book{
@@ -304,6 +302,8 @@ html {
                 border: 2px solid black;
                 height: 120px;
                 width: 90px;
+                box-shadow: 5px 0  #1f150a;
+                font-size: 10px;
               }
 
             }
