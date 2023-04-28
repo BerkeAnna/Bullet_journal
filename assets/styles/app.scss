@@ -200,9 +200,26 @@ html {
           //}
         }
 
+
+
+
         table {
           color: $sidebar-text-color;
           background-color: $sidebar-bg;
+          td{
+            a {
+              color: $sidebar-text-color;
+              text-decoration: none;
+              font-weight: 600;
+
+              &:hover{
+                color: white;
+              }
+            }
+
+          }
+
+
           .completed-red{
             background-color: $red-color;
             &:hover {
@@ -263,20 +280,36 @@ html {
               background-color: black;
             }
           }
-          td{
-            a {
-              color: $sidebar-text-color;
-              text-decoration: none;
-              font-weight: 600;
 
-              &:hover{
-                color: white;
-              }
-            }
-
-          }
 
         }
+        .bookshelf{
+          border: 10px solid #674421;
+          color: white;
+          background-color: #3f2914;
+
+          tr {
+            height: 150px;
+            border-bottom: 5px solid #674421;
+            //background-color: #0a53be;
+            td{
+              width: 150px;
+              //width: 50px;
+              //background-color: #B0413E;
+              //border: 2px solid black;
+              text-align: center;
+
+              .book{
+                background-color: #0a53be;
+                border: 2px solid black;
+                height: 120px;
+                width: 90px;
+              }
+
+            }
+          }
+        }
+
 
         button {
           background-color: $red-color;

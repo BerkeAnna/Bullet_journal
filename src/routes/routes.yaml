@@ -25,3 +25,7 @@ newHabit:
 newCompletedHabits:
   path: /hb/{year}/{month}/{day}
   controller: App\Controller\HabitTrackerController::index
+
+bookIndex:
+  path: /book
+  controller: App\Controller\BookController::index

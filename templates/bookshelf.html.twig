@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block bodyExtraClasses %}  {% endblock %}
+
+{% block pageContent %}
+    <div class="row">
+        <div class="col container-fluid">
+            <div class="row card">
+                <div class="col card-body d-flex flex-column justify-content-center align-items-center">
+
+                    <table class="bookshelf">
+                        <tbody>
+                        {% for i in 1..4 %}
+                            <tr class="d-flex ">
+                                {% for i in 1..4 %}
+                                <td class="d-flex justify-content-center align-content-center pt-4">
+                                    <div class="col-3 book d-flex align-items-center justify-content-center ">
+                                        am
+                                    </div>
+                                </td>
+                               {% endfor %}
+                            </tr>
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
