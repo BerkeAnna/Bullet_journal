@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
-
+{% set startBook = 0 %}
+{% set endBook = 3 %}
+{#kell egy kezdő, ami az elejétől kilistázza négyig, while-al, aztán ha megvan, a kezdőt növeli 4-el a sorforban#}
 {% block bodyExtraClasses %}  {% endblock %}
 
 {% block pageContent %}
@@ -7,23 +9,63 @@
         <div class="col container-fluid">
             <div class="row card">
                 <div class="col card-body d-flex flex-column justify-content-center align-items-center">
+                    <div class="row">
+                        <h1> < {{ "now"|date("Y.m.") }} > </h1>
+                    </div>
+                    <div class="row">
+                        <h2>{{ "now"|date('l') }} </h2>
+                    </div>
+                    <div class="d-flex pt-3">
+                        <button type="button" class="btn red ms-2 me-2"><a
+                                    href="{{ path('newBook') }}">New
+                                book</a></button>
+                        <button type="button" class="btn red ms-2 me-2"><a
+                                    href="{{ path('newBook') }}">New
+                                tag</a></button>
+                        <button type="button" class="btn red ms-2 me-2"><a
+                                    href="{{ path('newBook') }}">New
+                                category</a></button>
+                    </div>
 
+                </div>
+            </div>
+            <div class="row card">
+                <div class="col card-body d-flex flex-column justify-content-center align-items-center">
+
+                    {% if shelfCount != 0 %}
                     <table class="bookshelf">
                         <tbody>
-                        {% for i in 1..4 %}
+{#                        create the rows#}
+                        {% for i in 1..shelfCount %}
                             <tr class="d-flex ">
-                                {% for i in 1..4 %}
+{#                                create the books#}
+                                {% if i == shelfCount %}
+{#                                    take books in the shelf#}
+                                    {% set endBook = startBook + (lastRow-1) %}
+                                {% endif %}
+                                {% for i in startBook..endBook %}
+
                                 <td class="d-flex justify-content-center align-content-center pt-4">
-                                    <div class="col-3 book d-flex align-items-center justify-content-center ">
-                                        am
-                                    </div>
+{#                                    the book:#}
+                                   <a href="{{ path('bookPage', {id: books[i].id}) }}">
+                                        <div class="col-3 book d-flex align-items-center justify-content-center ">
+{#                                            {{ startBook }} - {{ endBook }} --{{ lastRow }} --#}
+                                            {{ books[i].author }}<br>
+                                            {{ books[i].title }}
+                                        </div>
+                                   </a>
                                 </td>
                                {% endfor %}
+                                {% set startBook = startBook + 4 %}
+                                {% set endBook = endBook + 4 %}
                             </tr>
                         {% endfor %}
 
                         </tbody>
                     </table>
+                    {% else %}
+                        <h1>Your library is empty!</h1>
+                    {% endif %}
                 </div>
             </div>
         </div>

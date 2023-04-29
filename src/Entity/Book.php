@@ -36,10 +36,10 @@ class Book
      */
     private $opinion;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $stars;
+//    /**
+//     * @ORM\Column(type="double", nullable=true)
+//     */
+//    private $stars;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
@@ -74,6 +74,11 @@ class Book
      * @ORM\JoinColumn(name="owner", referencedColumnName="id", onDelete="SET NULL")
      */
     private $owner;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $stars;
 
     public function __construct()
     {
@@ -121,17 +126,17 @@ class Book
         return $this;
     }
 
-    public function getStars(): ?int
-    {
-        return $this->stars;
-    }
-
-    public function setStars(?int $stars): self
-    {
-        $this->stars = $stars;
-
-        return $this;
-    }
+//    public function getStars(): ?int
+//    {
+//        return $this->stars;
+//    }
+//
+//    public function setStars(?int $stars): self
+//    {
+//        $this->stars = $stars;
+//
+//        return $this;
+//    }
 
     public function getStartDate(): ?DateTimeInterface
     {
@@ -219,6 +224,18 @@ class Book
     public function setOwner(?User $owner): self
     {
         $this->owner = $owner;
+
+        return $this;
+    }
+
+    public function getStars(): ?float
+    {
+        return $this->stars;
+    }
+
+    public function setStars(?float $stars): self
+    {
+        $this->stars = $stars;
 
         return $this;
     }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\BookTagRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -11,21 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class BookTag
 {
-    /**
-     * @return mixed
-     */
-    public function getBooks()
-    {
-        return $this->books;
-    }
 
-    /**
-     * @param mixed $books
-     */
-    public function setBooks($books): void
-    {
-        $this->books = $books;
-    }
 
     /**
      * @ORM\Id
@@ -113,15 +101,27 @@ class BookTag
         return $this;
     }
 
-    public function getBook(): ?Book
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getBooks(): Collection
     {
-        return $this->book;
+        return $this->books;
     }
 
-    public function setBook(?Book $book): self
+    public function addBooks(Book $book): void
     {
-        $this->book = $book;
+        $this->books[] = $book;
+    }
+
+    public function removeBook(Book $book): self
+    {
+        if ($this->books->removeElement($book)) {
+            $book->removeTag($this);
+        }
 
         return $this;
     }
+
 }

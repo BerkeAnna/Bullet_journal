@@ -29,3 +29,16 @@ newCompletedHabits:
 bookIndex:
   path: /book
   controller: App\Controller\BookController::index
+
+bookPage:
+  path: /bookPage/{id}
+  controller: App\Controller\BookController::bookPage
+
+newBook:
+  path: /book/new
+  controller: App\Controller\BookController::handler
+
+editBook:
+  path: /book/edit/{id}
+  controller: App\Controller\BookController::handler
+

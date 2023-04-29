@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block bodyExtraClasses %}  {% endblock %}
+
+{% block pageContent %}
+    <div class="row">
+    <div class="col container-fluid">
+    <div class="row card">
+        <div class="col card-body d-flex flex-column justify-content-center align-items-center">
+            <div class="row">
+                <h1>  {{ book.title}}  </h1>
+            </div>
+            <div class="row">
+                <h2> {{ book.author}}  </h2>
+            </div>
+            <div class="d-flex pt-3">
+                <button type="button" class="btn red ms-2 me-2"><a
+                            href="{{ path('newBook') }}">Edit</a></button>
+                <button type="button" class="btn red ms-2 me-2"><a
+                            href="{{ path('newBook') }}">Delete</a></button>
+            </div>
+        </div>
+    </div>
+    <div class="row card">
+        <div class="col card-body d-flex flex-column justify-content-center align-items-center">
+            <div class="row text-white">
+                {% include 'bookWidget/bookStars.html.twig' %}
+            </div>
+            <div class="row  text-white">
+              //  ide jön a kép ha van //
+            </div>
+            <div class="row  text-white">
+                {{  book.opinion }}
+            </div>
+
+
+        </div>
+    </div>
+
+
+{% endblock %}

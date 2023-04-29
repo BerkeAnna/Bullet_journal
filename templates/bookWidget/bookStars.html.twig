@@ -1,0 +1,12 @@
+
+<div class="d-flex">
+    {% if book.stars >= 1 %}
+        {% for i in 1..book.stars %}
+    {#        {{ (book.stars) }}#}
+            <i class="fa-solid fa-star"></i>
+        {% endfor %}
+    {% endif %}
+    {% if book.stars == 0.5 or book.stars == 1.5 or  book.stars == 2.5 or  book.stars == 3.5 or book.stars == 4.5 %}
+        <i class="fa-solid fa-star-half"></i>
+    {% endif %}
+</div>
