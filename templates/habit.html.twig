@@ -56,11 +56,13 @@
                                 <th >{{ habit.name }}</th>
                                 {% for day in 1..dayOfMonth %}
                                     {% set completionStatus = false %}
-                                    {% for i in 0..d-1 %}
-                                        {% if day == days[i] and names[i] == habit.name %}
-                                            {% set completionStatus = true %}
-                                        {% endif %}
-                                    {% endfor %}
+                                    {%  if days is not empty %}
+                                        {% for i in 0..d-1 %}
+                                            {% if day == days[i] and names[i] == habit.name %}
+                                                {% set completionStatus = true %}
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endif %}
                                     {% if completionStatus %}
                                         {% if day >0 and day < 5 %}
                                             <td class="completed-red "></td>
