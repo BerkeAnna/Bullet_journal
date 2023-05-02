@@ -22,15 +22,25 @@
         </div>
     </div>
     <div class="row card">
-        <div class="col card-body d-flex flex-column justify-content-center align-items-center">
-            <div class="row text-white">
-                {% include 'bookWidget/bookStars.html.twig' %}
-            </div>
-            <div class="row  text-white">
-              //  ide jön a kép ha van //
-            </div>
-            <div class="row  text-white">
-                {{  book.opinion }}
+        <div class="col card-body d-flex flex-column ">
+            <div class="row ">
+                <div class="col-md-4 bookDescBorder d-flex justify-content-start">
+                  <img src="{{ asset('images/schwab.jpg') }}">
+                </div>
+                <div class="col-md-8 pt-3 d-block descCol">
+                    <div class="row text-white align-items-center">
+                        {% include 'bookWidget/bookStars.html.twig' %}
+                    </div>
+                    <div class="row text-white pt-3 ">
+                        <h4>Category:</h4> ...in progress...
+                    </div>
+                    <div class="row text-white pt-3 ">
+                        <h4>Tags:</h4> ...in progress...
+                    </div>
+                    <div class="row text-white pt-3 ">
+                        <h4>Opinion:</h4> {{  book.opinion }}
+                    </div>
+                </div>
             </div>
 
 

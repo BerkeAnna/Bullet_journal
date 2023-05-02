@@ -16,6 +16,11 @@ $roboto-font: 'Roboto', sans-serif;
 $open-font: 'Open', sans-serif;
 
 html {
+
+  .red-color{
+    color: $red-color;
+  }
+
   .sidebar {
     position: fixed;
     top: 0;
@@ -140,13 +145,33 @@ html {
           color: white;
         }
 
+        h4{
+          font-size: 18px;
+          color: $red-color;
+          font-weight: 700;
+          margin: 0;
+          padding: 0;
+        }
 
-        //todo: nem működik ez a class a formon
-        //form {
+        img{
+          width: 300px;
+          //position: absolute;
+          //right: 300px;
+        }
+        .bookDescBorder{
+          border-right: 5px solid white;
+          border-style: dotted;
+        }
+        .descCol{
+          width: 700px;
+          padding-left: 50px;
+        }
 
         label {
           color: $sidebar-text-color;
         }
+
+
 
 
         .create-text-input {

@@ -13,6 +13,7 @@
         "doctrine/orm": "^2.14",
         "phpdocumentor/reflection-docblock": "^5.3",
         "sensio/framework-extra-bundle": "^6.1",
+        "serpwow/google-search-results": "*",
         "symfony/asset": "5.2.*",
         "symfony/console": "5.2.*",
         "symfony/doctrine-messenger": "5.2.*",

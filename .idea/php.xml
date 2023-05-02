@@ -133,6 +133,8 @@
       <path value="$PROJECT_DIR$/vendor/composer" />
       <path value="$PROJECT_DIR$/vendor/phar-io/version" />
       <path value="$PROJECT_DIR$/vendor/symfony/webpack-encore-bundle" />
+      <path value="$PROJECT_DIR$/vendor/serpwow/google-search-results" />
+      <path value="$PROJECT_DIR$/vendor/tcdent/php-restclient" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.2">
