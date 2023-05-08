@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block bodyExtraClasses %} {% endblock %}
+
+{% block pageContent %}
+
+
+    <div class="card col">
+        <div class=" card-body">
+            <h1>New book</h1>
+            {{ form_start(form) }}
+            <div class="row  d-flex  mb-2">
+                <div class="col-2  d-flex justify-content-start ">
+                    {{ form_label(form.name) }}
+                </div>
+                <div class="col-10 d-flex justify-content-end   ">
+                    {{ form_widget(form.name) }}
+                </div>
+            </div>
+            <div class="row  d-flex  mb-2">
+                <div class="col-2  d-flex justify-content-start ">
+
+                    {{ form_label(form.description) }}
+                </div>
+                <div class="col-10 d-flex justify-content-end   ">
+
+                    {{ form_widget(form.description) }}
+                </div>
+            </div>
+            <div class="row  d-flex  mb-2">
+                <div class="col-2  d-flex justify-content-start ">
+
+                    {{ form_label(form.publicToOthers) }}
+                </div>
+                <div class="col-10 d-flex justify-content-end   ">
+
+                    {{ form_widget(form.publicToOthers) }}
+                </div>
+            </div>
+
+            <div class="row ">
+                <div class="col-2 pt-4">
+                    {{ form_widget(form.submit) }}
+                </div>
+            </div>
+
+
+            {{ form_end(form) }}
+        </div>
+    </div>
+
+{% endblock %}

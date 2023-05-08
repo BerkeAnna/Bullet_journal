@@ -41,4 +41,8 @@ newBook:
 editBook:
   path: /book/edit/{id}
   controller: App\Controller\BookController::handler
+  
+newBookTag:
+  path: /bookTag/new
+  controller: App\Controller\BookTagController::handler
 

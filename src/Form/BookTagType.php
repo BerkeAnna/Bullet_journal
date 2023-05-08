@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\BookTag;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,8 +16,13 @@ class BookTagType extends AbstractType
             ->add('name')
             ->add('description')
             ->add('publicToOthers')
-            ->add('owner')
-            ->add('books')
+            ->add('submit', SubmitType::class, [
+                'attr' => [
+                    'class' => 'btn',
+                ]
+            ])
+//            ->add('owner')
+//            ->add('books')
         ;
     }
 
