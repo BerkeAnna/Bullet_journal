@@ -48,10 +48,11 @@
                                 <td class="d-flex justify-content-center align-content-center pt-4">
 {#                                    the book:#}
                                    <a href="{{ path('bookPage', {id: books[i].id}) }}">
-                                        <div class="col-3 book d-flex align-items-center justify-content-center ">
+                                       {% set backgroundImage = asset('uploads/bookCovers/' ~ books[i].image) %}
+                                       <div class="col-3 book d-flex align-items-center justify-content-center " style="background-image: url('{{ backgroundImage }}') ; background-size: cover; background-position: center;">
 {#                                            {{ startBook }} - {{ endBook }} --{{ lastRow }} --#}
-                                            {{ books[i].author }}<br>
-                                            {{ books[i].title }}
+{#                                            {{ books[i].author }}<br>#}
+{#                                            {{ books[i].author }}<br>#}
                                         </div>
                                    </a>
                                 </td>

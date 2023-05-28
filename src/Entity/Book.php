@@ -80,6 +80,11 @@ class Book
      */
     private $stars;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $image;
+
     public function __construct()
     {
         $this->tags = new ArrayCollection();
@@ -236,6 +241,18 @@ class Book
     public function setStars(?float $stars): self
     {
         $this->stars = $stars;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }

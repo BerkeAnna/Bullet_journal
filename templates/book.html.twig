@@ -25,7 +25,9 @@
         <div class="col card-body d-flex flex-column ">
             <div class="row ">
                 <div class="col-md-4 bookDescBorder d-flex justify-content-start">
-                  <img src="{{ asset('images/schwab.jpg') }}">
+{#                    todo: select the bookcover from db. where id = id select image column#}
+                    {% set bookCover = 'uploads/bookCovers/' %}
+                    <img src="{{ asset(bookCover ~ book.image) }}" alt="Book Cover">
                 </div>
                 <div class="col-md-8 pt-3 d-block descCol">
                     <div class="row text-white align-items-center">

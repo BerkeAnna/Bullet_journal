@@ -11,6 +11,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -24,6 +25,9 @@ class BookType extends AbstractType
             ->add('author', TextType::class)
             ->add('title', TextType::class)
             ->add('opinion', TextType::class)
+            ->add('image', FileType::class, [
+                'mapped' => false
+            ])
             ->add('stars', ChoiceType::class,[
 
                 'attr' => [
