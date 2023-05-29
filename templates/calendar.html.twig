@@ -34,7 +34,6 @@
 {% endif %}
 
 
-{#    {% set firstDayNumber = 7 %}    #}
 
 {% block bodyExtraClasses %}  {% endblock %}
 
@@ -59,20 +58,18 @@
                                 <tr class="d-flex">
                                     {% if firstDayNumber != 1 %}
                                         {% for j in 1..firstDayNumber-1 %}
-                                            <td class="justify-self-center bg-danger">
-{#                                                {{ j }}#}
-{#                                                todo: megcsinálni, h ha a
-    {% set firstDayNumber = 7 %} is not == 1 akkor az adott szloptól kezdje a számolást#}
+                                            <td class="justify-self-center">
+{#                                                todo: megcsinálni, h ha a {% set firstDayNumber = 7 %} is not == 1 akkor az adott szloptól kezdje a számolást#}
                                             </td>
                                         {% endfor %}
-                                        {% for j in firstDayNumber..7 %}
-                                            <td class="justify-self-center bg-info">
+                                        {% for j in 1..(7-firstDayNumber+1) %}
+                                            <td class="justify-self-center ">
                                                 {{ j }}
                                             </td>
                                         {% endfor %}
                                     {% else %}
                                         {% for j in 1..7 %}
-                                            <td class="justify-self-center bg-light">
+                                            <td class="justify-self-center">
                                                 {{ j }}
                                             </td>
                                         {% endfor %}
@@ -82,10 +79,10 @@
                                 <tr class="d-flex">
                                     {% for j in 1..7 %}
                                         {% set day = j + ((i-1)*7) %}
-                                        {% if day <= daysOfMonth %}
-                                        <td class="justify-self-center">
-                                            {{ day }}
-                                        </td>
+                                        {% if day-firstDayNumber+1 <= daysOfMonth %}
+                                            <td class="justify-self-center">
+                                                {{ day - firstDayNumber+1 }}
+                                            </td>
                                         {% endif %}
                                     {% endfor %}
                                 </tr>
