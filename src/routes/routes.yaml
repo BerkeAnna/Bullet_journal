@@ -46,3 +46,6 @@ newBookTag:
   path: /bookTag/new
   controller: App\Controller\BookTagController::handler
 
+calendar:
+  path: /calendar
+  controller: App\Controller\CalendarController::index

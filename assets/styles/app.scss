@@ -226,7 +226,17 @@ html {
         }
 
 
-
+        .table-calendar{
+          align-content: center;
+          background-color: black;
+          color: $sidebar-text-color;
+          border: solid $sidebar-text-color 2px ;
+          td {
+            border: solid $sidebar-text-color 2px ;
+            width: 120px;
+            height: 120px;
+          }
+        }
 
         table {
           color: $sidebar-text-color;
@@ -243,6 +253,8 @@ html {
             }
 
           }
+
+
 
 
           .completed-red{

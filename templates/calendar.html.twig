@@ -1,0 +1,103 @@
+{% extends 'base.html.twig' %}
+{% set month = "now"|date("m")  %}
+{% set year = "now"|date("y")  %}
+{% set firstDayOfMonth = "now"|date("F 1, Y") %}
+{% set firstDayOfWeek = firstDayOfMonth|date("l") %}
+
+{% set daysOfMonth = 31 %}
+{% set firstDayNumber = 1 %}
+
+{% if month == 4 or month == 6 or month == 9 or month == 11 %}
+    {% set daysOfMonth = 30 %}
+{% elseif month == 2 %}
+    {% if year is divisible by(4) and (year is not divisible by(100) or year is divisible by(400)) %}
+        {% set daysOfMonth = 29 %}
+    {% else %}
+        {% set daysOfMonth = 28 %}
+    {% endif %}
+{% endif %}
+
+{% if firstDayOfWeek == "Monday" %}
+    {% set firstDayNumber = 1 %}
+{% elseif firstDayOfWeek == "Tuesday" %}
+    {% set firstDayNumber = 2 %}
+{% elseif firstDayOfWeek == "Wednesday" %}
+    {% set firstDayNumber = 3 %}
+{% elseif firstDayOfWeek == "Thursday" %}
+    {% set firstDayNumber = 4 %}
+{% elseif firstDayOfWeek == "Friday" %}
+    {% set firstDayNumber = 5 %}
+{% elseif firstDayOfWeek == "Saturday" %}
+    {% set firstDayNumber = 6 %}
+{% elseif firstDayOfWeek == "Sunday" %}
+    {% set firstDayNumber = 7 %}
+{% endif %}
+
+
+{#    {% set firstDayNumber = 7 %}    #}
+
+{% block bodyExtraClasses %}  {% endblock %}
+
+{% block pageContent %}
+<div class="row">
+    <div class="col container-fluid">
+        <div class="row card">
+            <div class="col card-body d-flex flex-column justify-content-center align-items-center">
+                <div class="row">
+                    <h1> < {{ "now"|date("Y.m.") }} > </h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="card row">
+            <div class=" col card-body d-flex flex-column justify-content-center align-items-center">
+                <table class="table-calendar">
+                    <tbody>
+                        {% for i in 1..5 %}
+{#                            ha az első sorban vagyunk megnézzük milyen nappal kezdődik, előtte semmit#}
+                            {% if i == 1 %}
+                                <tr class="d-flex">
+                                    {% if firstDayNumber != 1 %}
+                                        {% for j in 1..firstDayNumber-1 %}
+                                            <td class="justify-self-center bg-danger">
+{#                                                {{ j }}#}
+{#                                                todo: megcsinálni, h ha a
+    {% set firstDayNumber = 7 %} is not == 1 akkor az adott szloptól kezdje a számolást#}
+                                            </td>
+                                        {% endfor %}
+                                        {% for j in firstDayNumber..7 %}
+                                            <td class="justify-self-center bg-info">
+                                                {{ j }}
+                                            </td>
+                                        {% endfor %}
+                                    {% else %}
+                                        {% for j in 1..7 %}
+                                            <td class="justify-self-center bg-light">
+                                                {{ j }}
+                                            </td>
+                                        {% endfor %}
+                                    {% endif %}
+                                </tr>
+                            {% else %}
+                                <tr class="d-flex">
+                                    {% for j in 1..7 %}
+                                        {% set day = j + ((i-1)*7) %}
+                                        {% if day <= daysOfMonth %}
+                                        <td class="justify-self-center">
+                                            {{ day }}
+                                        </td>
+                                        {% endif %}
+                                    {% endfor %}
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
